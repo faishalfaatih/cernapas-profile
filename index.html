@@ -13,6 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="shortcut icon" type="image/png" href="images/cernapas-logo.png" />
+    <style>
+      a.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    </style>
   </head>
 
   <body>
@@ -46,7 +53,8 @@
                 <p class="banner-text white">Aplikasi yang dikembangkan untuk sarana media pembelajaran dalam memperkenalkan organ pernapasan dan pencernaan pada manusia dengan memanfaatkan teknologi Augmented Reality</p>
                 <ul>
                   <li>
-                    <a href="https://drive.google.com/uc?export=download&id=11g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s" /></a>
+                    <!--<a href="https://drive.google.com/uc?export=download&id=11g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s" /></a> -->
+                    <a class="downloadLink" href="https://drive.google.com/uc?export=download&id=11g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s" /></a>
                   </li>
                   <!-- <li>
                     <a href="#"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s" /></a>
@@ -369,7 +377,8 @@
             <div class="section-content text-center">
               <ul>
                 <li>
-                  <a href="https://drive.google.com/uc?export=download&id=11g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s" /></a>
+                  <!--<a href="https://drive.google.com/uc?export=download&id=11g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s" /></a> -->
+                  <a class="downloadLink" href="https://drive.google.com/uc?export=download&id=22g6FcHk0i3KJllUtHeax9M7fyqpzJLCh" download="CERNAPAS AR"><img src="images/download.png" class="wow fadeInUp" data-wow-delay="0.4s"/></a>
                 </li>
                 <!-- <li>
                   <a href="#"><img src="images/playstore.png" class="wow fadeInUp" data-wow-delay="0.7s" /></a>
@@ -455,6 +464,29 @@
           onPageChange: null, // function(pageIndex) that is called when page is changed
           topOffset: -63,
         });
+      });
+
+      //Android Only
+
+      // Fungsi untuk mendeteksi apakah perangkat adalah Android
+      function isAndroid() {
+        return /Android/i.test(navigator.userAgent);
+      }
+
+      // Tambahkan logika pada semua tombol unduhan
+      document.addEventListener("DOMContentLoaded", function() {
+        const downloadLinks = document.querySelectorAll(".downloadLink");
+
+        if (!isAndroid()) {
+          // Jika bukan Android, tambahkan kelas 'disabled' dan event listener ke semua tombol
+          downloadLinks.forEach(link => {
+            link.classList.add("disabled");
+            link.addEventListener("click", function(event) {
+              event.preventDefault(); // Cegah unduhan
+              alert("Maaf, unduhan ini hanya bisa dilakukan di perangkat Android.");
+            });
+          });
+        }
       });
     </script>
   </body>
